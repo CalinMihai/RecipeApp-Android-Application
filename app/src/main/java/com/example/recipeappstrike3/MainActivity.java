@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView y;
     private TextView z;
     private Button button;
+    private Button button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openProfileActivity();
+            }
+        });
+
+        button2 = (Button) findViewById(R.id.settingsBtn);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSettingsActivity();
             }
         });
 
@@ -60,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void openSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
 
     public void openProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
