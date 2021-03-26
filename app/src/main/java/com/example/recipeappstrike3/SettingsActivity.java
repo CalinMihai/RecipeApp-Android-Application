@@ -22,7 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         connectionStatus = (TextView) findViewById(R.id.connectionStatus);
 
-        if (getIntent().getBooleanExtra("ACTIVATE_RECEIVER", false)){
+
             receiver = new NetworkStateReceiver();
             receiver.addListener(new NetworkStateReceiver.NetworkStateReceiverListener() {
                 @Override
@@ -38,6 +38,6 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             });
             registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-        }
+
     }
 }
