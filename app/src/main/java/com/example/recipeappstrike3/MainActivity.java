@@ -16,18 +16,17 @@ public class MainActivity extends AppCompatActivity {
     private TextView y;
     private TextView z;
     private Button button;
+    private Button button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         button = (Button) findViewById(R.id.profileBtn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openProfileActivity();
-            }
-        });
+        button.setOnClickListener(view -> openProfileActivity());
+
+        button2 = (Button) findViewById(R.id.settingsBtn);
+        button2.setOnClickListener(view -> openSettingsActivity());
 
         x = (TextView) findViewById(R.id.x);
 
@@ -60,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void openSettingsActivity() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
 
     public void openProfileActivity() {
         Intent intent = new Intent(this, ProfileActivity.class);
