@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView z;
     private Button button;
     private Button button2;
+    private Button button3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
         button2 = (Button) findViewById(R.id.settingsBtn);
         button2.setOnClickListener(view -> openSettingsActivity());
+
+        button3= (Button) findViewById(R.id.friendsBtn);
+        button3.setOnClickListener(view -> openFriendsActivity());
 
         x = (TextView) findViewById(R.id.x);
 
@@ -71,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openFriendsActivity() {
+        Intent intent = new Intent(this, FriendsActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onResume() {
