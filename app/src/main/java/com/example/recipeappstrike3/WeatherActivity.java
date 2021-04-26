@@ -23,7 +23,8 @@ import org.json.JSONObject;
 public class WeatherActivity extends AppCompatActivity {
 
     // we"ll make HTTP request to this URL to retrieve weather conditions
-    String weatherWebserviceURL = "http://api.openweathermap.org/data/2.5/weather?q=ariana,tn&appid=2156e2dd5b92590ab69c0ae1b2d24586&units=metric";
+    //change this according to the openweathermap API URL
+    String weatherWebserviceURL = "https://api.openweathermap.org/data/2.5/weather?q=Craiova&appid=8ec2f1bb8686f16dcbe926a1569c3726&units=metric";
     //the loading Dialog
     ProgressDialog pDialog;
     // Textview to show temperature and description
@@ -32,8 +33,6 @@ public class WeatherActivity extends AppCompatActivity {
     ImageView weatherBackground;
     // JSON object that contains weather information
     JSONObject jsonObj;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,20 +53,16 @@ public class WeatherActivity extends AppCompatActivity {
 // make HTTP request to retrieve the weather
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 weatherWebserviceURL, null, new Response.Listener<JSONObject>() {
-
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     // Parsing json object response
                     // response will be a json object
-
-
                     jsonObj = (JSONObject) response.getJSONArray("weather").get(0);
                     // display weather description into the "description textview"
                     description.setText(jsonObj.getString("description"));
                     // display the temperature
                     temperature.setText(response.getJSONObject("main").getString("temp") + " °C");
-
                     String backgroundImage = "";
 
                     //choose the image to set as background according to weather condition
@@ -77,8 +72,9 @@ public class WeatherActivity extends AppCompatActivity {
                         backgroundImage = "https://marwendoukh.files.wordpress.com/2017/01/rainy-wallpaper1.jpg";
                     } else if (jsonObj.getString("main").equals("Snow")) {
                         backgroundImage = "https://marwendoukh.files.wordpress.com/2017/01/snow-wallpaper1.jpg";
+                    } else if (jsonObj.getString("main").equals("clear sky")) {
+                        backgroundImage = "https://i.pinimg.com/originals/b1/ec/43/b1ec430ab76b54a6025055f94f6d7ec9.jpg";
                     }
-
                     // load image from link and display it on background
                     // We'll use the Glide library
                     Glide
@@ -92,36 +88,26 @@ public class WeatherActivity extends AppCompatActivity {
                                     System.out.println(e.toString());
                                     return false;
                                 }
-
                                 @Override
                                 public boolean onResourceReady(GlideDrawable resource, String model, Target target, boolean isFromMemoryCache, boolean isFirstResource) {
                                     return false;
                                 }
                             })
                             .into(weatherBackground);
-
                     // hide the loading Dialog
                     pDialog.dismiss();
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Error , try again ! ", Toast.LENGTH_LONG).show();
                     pDialog.dismiss();
-
                 }
-
-
             }
-
-
         }, error -> {
             VolleyLog.d("tag", "Error: " + error.getMessage());
             Toast.makeText(getApplicationContext(), "Error while loading ... ", Toast.LENGTH_SHORT).show();
             // hide the progress dialog
             pDialog.dismiss();
         });
-
 // Adding request to request queue
         AppController.getInstance(this).addToRequestQueue(jsonObjReq);
     }

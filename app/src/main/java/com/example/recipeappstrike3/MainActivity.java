@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         button2 = (Button) findViewById(R.id.settingsBtn);
         button2.setOnClickListener(view -> openSettingsActivity());
 
-        button3= (Button) findViewById(R.id.friendsBtn);
+        button3 = (Button) findViewById(R.id.friendsBtn);
         button3.setOnClickListener(view -> openFriendsActivity());
 
-        button4= (Button) findViewById(R.id.weatherBtn);
+        button4 = (Button) findViewById(R.id.weatherBtn);
         button4.setOnClickListener(view -> openWeatherActivity());
 
         x = (TextView) findViewById(R.id.x);
