@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button button2;
     private Button button3;
+    private Button button4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
 
         button3= (Button) findViewById(R.id.friendsBtn);
         button3.setOnClickListener(view -> openFriendsActivity());
+
+        button4= (Button) findViewById(R.id.weatherBtn);
+        button4.setOnClickListener(view -> openWeatherActivity());
 
         x = (TextView) findViewById(R.id.x);
 
@@ -63,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void openWeatherActivity() {
+        Intent intent = new Intent(this, WeatherActivity.class);
+        startActivity(intent);
     }
 
     public void openSettingsActivity() {
