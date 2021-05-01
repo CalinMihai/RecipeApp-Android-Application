@@ -21,6 +21,7 @@
     <uses-feature
         android:name="android.hardware.sensor.gyroscope"
         android:required="true" />
+    
 
     <application
         android:allowBackup="true"
@@ -72,6 +73,12 @@
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
+
+        <service android:name=".FirebaseNotifications">
+            <intent-filter>
+                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

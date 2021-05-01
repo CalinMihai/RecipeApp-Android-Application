@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //notifications
+        Intent intentBackgroundService = new Intent(this, FirebaseNotifications.class);
+        startService(intentBackgroundService);
+
+
         button = (Button) findViewById(R.id.profileBtn);
         button.setOnClickListener(view -> openProfileActivity());
 
